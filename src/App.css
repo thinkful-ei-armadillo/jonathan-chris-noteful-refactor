@@ -1,0 +1,25 @@
+header a {
+  text-decoration: none;
+  display: block;
+  margin: 0 auto;
+  width: 11em;
+  text-align: center;
+}
+
+header a:link,
+header a:visited { color: rgb(255, 194, 102) }
+
+.notefulContainer {
+  display: flex;
+}
+
+.notefulContainer > div {
+  padding: 2em;
+}
+
+.notefulContainer h4 { margin: 0 }
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}

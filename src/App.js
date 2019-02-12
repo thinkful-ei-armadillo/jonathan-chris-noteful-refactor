@@ -24,7 +24,6 @@ class App extends Component {
     return <Folder folder={folder} notes={this.state.notes} />;
   }
 
-// props.match.params.whatever
   render() {
     return (
       <div className="App">
@@ -34,11 +33,12 @@ class App extends Component {
           </Link>
         </header>
 
-        <Sidebar state={this.state} setFolder={this.setFolder} />
-
-        <Route exact path='/' render={this.showInitialPage} /> 
-        <Route path='/note/:noteId' component={Note} />
-        <Route path='/folders/:foldersId' render={this.showFolder} />
+        <div className="notefulContainer">
+          <Sidebar state={this.state} setFolder={this.setFolder} />
+          <Route path='/note/:noteId' component={Note} />
+          <Route path='/folders/:foldersId' render={this.showFolder} />
+          <Route exact path='/' render={this.showInitialPage} /> 
+        </div>
       </div>
     );
   }

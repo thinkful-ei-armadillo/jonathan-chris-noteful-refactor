@@ -9,8 +9,8 @@ class Sidebar extends Component {
 
     render() {
       return (
-        <div>
-          <ul className='FolderList'>
+        <div class='sidebar'>
+          <ul>
             {this.props.state.folders.map(folder =>
               <li key={folder.id}>
                 <Link to={`/folders/${folder.id}`} >
