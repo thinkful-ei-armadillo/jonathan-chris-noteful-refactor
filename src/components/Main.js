@@ -16,9 +16,10 @@ export default function Main(props) {
     });
 
     return (
-      <main>
+      <div>
+        <h4>All Notes</h4>
         <ul>{notes}</ul>
-      </main>
+      </div>
     );
   }
 

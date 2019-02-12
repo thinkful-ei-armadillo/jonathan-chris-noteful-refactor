@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 
 
@@ -8,13 +8,13 @@ class Sidebar extends Component {
 
     render() {
       return (
-        <div>
-          <ul className='FolderList'>
+        <div class='sidebar'>
+          <ul>
             {this.props.state.folders.map(folder =>
               <li key={folder.id}>
-                <Link to={`/folders/${folder.id}`} >
+                <NavLink to={`/folders/${folder.id}`} >
                   {folder.name}
-                </Link>
+                </NavLink>
               </li>
             )}
           </ul>

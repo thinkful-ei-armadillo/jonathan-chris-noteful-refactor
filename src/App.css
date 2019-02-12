@@ -1,0 +1,48 @@
+header a {
+  text-decoration: none;
+  display: block;
+  margin: 0 auto;
+  width: 11em;
+  text-align: center;
+}
+
+header a:link,
+header a:visited { color: rgb(255, 194, 102) }
+
+.notefulContainer {
+  display: flex;
+}
+
+.notefulContainer > div {
+  padding: 2em;
+}
+
+.notefulContainer h4 { margin: 0 }
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul a:link,
+ul a:visited {
+  text-decoration: none;
+  color: rgb(67, 67, 179);
+}
+
+ul a:hover {
+  color: blue;
+  text-shadow: 0px 2px 1px #597cde;
+}
+
+.sidebar ul {
+  max-width: 5em;
+  display: block;
+}
+
+.sidebar ul a {
+  display: inline-block;
+  padding: 10px 5px;
+}
+
+.active { font-weight: bold }

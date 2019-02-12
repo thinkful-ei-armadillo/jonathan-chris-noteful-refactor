@@ -26,11 +26,10 @@ class App extends Component {
 
   showNote = (e) => {
     let noteId = this.state.notes.find(n => n.id === e.match.params.noteId);
-    console.log(noteId)
+    
     return <Note note={noteId} notes={this.state.notes} />
   }
 
-// props.match.params.whatever
   render() {
     return (
       <div className="App">
@@ -40,12 +39,12 @@ class App extends Component {
           </Link>
         </header>
 
-        <Sidebar state={this.state} setFolder={this.setFolder} />
-
-        <Route exact path='/' render={this.showInitialPage} /> 
-        <Route path='/note/:noteId' render={this.showNote} />
-        <Route path='/folders/:foldersId' render={this.showFolder} />
-
+        <div className="notefulContainer">
+          <Sidebar state={this.state} setFolder={this.setFolder} />
+          <Route path='/note/:noteId' render={this.showNote} />
+          <Route path='/folders/:foldersId' render={this.showFolder} />
+          <Route exact path='/' render={this.showInitialPage} /> 
+        </div>
       </div>
     );
   }

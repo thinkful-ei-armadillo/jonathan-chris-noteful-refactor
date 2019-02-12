@@ -15,10 +15,9 @@ class Folder extends Component {
       });
 
     return (
-      <>
-        <div>You selected folder: {this.props.folder.name}</div>
+      <div>
         <ul>{notes}</ul>
-      </>
+      </div>
     )
   }
 }
