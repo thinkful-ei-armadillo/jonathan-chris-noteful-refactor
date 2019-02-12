@@ -5,22 +5,22 @@ import Note from './Note';
 
 
 export default function Main(props) {
-    console.log(props)
+    console.log('MAIN PROPS: ', props);
+
+    //let initial = props.match.params.length === 0 ? <p>test</p>:'';
+    let notes = props.notes.map(n => {
+      return (
+        <li key={n.id}>
+          <Link to={`/note/${n.id}`}>{n.name}</Link>
+          <p>{n.modified}</p>
+        </li>
+      );
+    });
+
     return (
       <main>
-        <ul>
-          {props.state.map(note => 
-            <li key={note.id}>
-              <Link to={`/note/${note.id}`}>
-                {note.name}
-              </Link>
-            </li>
-            )}
-        </ul>
-
-        
+        <ul>{notes}</ul>
       </main>
-      
-    )
+    );
   }
 

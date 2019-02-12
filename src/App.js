@@ -14,9 +14,18 @@ class App extends Component {
     folders: store.folders
   }
 
+  showInitialPage = (e) => {
+    return <Main props={e} notes={this.state.notes} />;
+  }
 
+  showFolder = (e) => {
+    let folder = this.state.folders.find(f => f.id === e.match.params.foldersId);
+
+    return <Folder folder={folder} notes={this.state.notes} />;
+  }
+
+// props.match.params.whatever
   render() {
-    console.log(this.state)
     return (
       <div className="App">
         <header className="App-header">
@@ -24,15 +33,12 @@ class App extends Component {
             <h1>Noteful</h1>
           </Link>
         </header>
-        <Sidebar state={this.state}>
-          <Route path='/folders/:foldersId' component={Folder} />
-        </Sidebar>
-        <Main state={this.state.notes}>
-          <Route exact path='/' component={Main} /> 
-          <Route path='/note/:noteId' component={Note} />
-        </Main>
-        
-        
+
+        <Sidebar state={this.state} setFolder={this.setFolder} />
+
+        <Route exact path='/' render={this.showInitialPage} /> 
+        <Route path='/note/:noteId' component={Note} />
+        <Route path='/folders/:foldersId' render={this.showFolder} />
       </div>
     );
   }
