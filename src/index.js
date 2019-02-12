@@ -7,7 +7,7 @@ import store from './store';
 
 ReactDOM.render(
   <BrowserRouter>
-    <App store={store} />
+    <App />
   </BrowserRouter>,
   document.getElementById('root')
 );

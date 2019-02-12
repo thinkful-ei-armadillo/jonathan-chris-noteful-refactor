@@ -4,26 +4,23 @@ import {Link} from 'react-router-dom';
 import store from '../store';
 
 
-class Sidebar extends Component {
+export default function Sidebar(props) {
   
-  render() {
-    console.log(store)
+  
+    console.log(props)
     return (
       <div>
-        <div>from sidebar.js</div>
         <ul className='FolderList'>
-          {store.folders.map(folder => 
+          {props.state.folders.map(folder =>
             <li key={folder.id}>
               <Link to={`/folders/${folder.id}`} >
                 {folder.name}
               </Link>
             </li>
-            )}
+          )}
         </ul>
-        
       </div>
+        
     )
   }
-}
 
-export default Sidebar;
