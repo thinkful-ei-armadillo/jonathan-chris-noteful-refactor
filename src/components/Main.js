@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
-import Sidebar from './Sidebar';
+import React from 'react';
 import {Link} from 'react-router-dom'
-import Note from './Note';
+
 
 
 export default function Main(props) {
     console.log('MAIN PROPS: ', props);
 
-    //let initial = props.match.params.length === 0 ? <p>test</p>:'';
     let notes = props.notes.map(n => {
       return (
         <li key={n.id}>

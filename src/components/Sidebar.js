@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Folder from './Folder';
+
 import {Link} from 'react-router-dom';
-import store from '../store';
+
 
 
 class Sidebar extends Component {

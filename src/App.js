@@ -24,6 +24,12 @@ class App extends Component {
     return <Folder folder={folder} notes={this.state.notes} />;
   }
 
+  showNote = (e) => {
+    let noteId = this.state.notes.find(n => n.id === e.match.params.noteId);
+    console.log(noteId)
+    return <Note note={noteId} notes={this.state.notes} />
+  }
+
 // props.match.params.whatever
   render() {
     return (
@@ -37,8 +43,9 @@ class App extends Component {
         <Sidebar state={this.state} setFolder={this.setFolder} />
 
         <Route exact path='/' render={this.showInitialPage} /> 
-        <Route path='/note/:noteId' component={Note} />
+        <Route path='/note/:noteId' render={this.showNote} />
         <Route path='/folders/:foldersId' render={this.showFolder} />
+
       </div>
     );
   }
