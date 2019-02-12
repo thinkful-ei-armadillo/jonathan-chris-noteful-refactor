@@ -2,8 +2,6 @@ import React from 'react';
 
 
 export default function Note(props) {
-
-  console.log(props.note)
   
   return (
     <div>

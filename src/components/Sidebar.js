@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom';
 
 
 class Sidebar extends Component {
-    //console.log("SIDEBAR PROPS:", props);
 
     render() {
       return (
@@ -23,7 +22,6 @@ class Sidebar extends Component {
           
       )
     }
-    
   }
 
   export default Sidebar;
