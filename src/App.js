@@ -3,15 +3,16 @@ import Folder from './components/Folder';
 import Main from './components/Main';
 import Note from './components/Note';
 import Sidebar from './components/Sidebar';
+import NoteContext from './NoteContext';
 import store from './store'
 import { Route, Link } from 'react-router-dom';
-
 import './App.css';
+
 
 class App extends Component {
   state = {
     notes: store.notes,
-    folders: store.folders
+    folders: store.folders,
   }
 
   showInitialPage = (e) => {
@@ -27,7 +28,7 @@ class App extends Component {
   showNote = (e) => {
     let noteId = this.state.notes.find(n => n.id === e.match.params.noteId);
     
-    return <Note note={noteId} notes={this.state.notes} />
+    return <Note note={noteId} />
   }
 
   render() {
@@ -41,7 +42,15 @@ class App extends Component {
 
         <div className="notefulContainer">
           <Sidebar state={this.state} setFolder={this.setFolder} />
-          <Route path='/note/:noteId' render={this.showNote} />
+
+          <NoteContext.Provider value={{
+            notes: this.state.notes,
+            setNotes: notes => this.setState({notes})
+          }}
+          >  
+            <Route path='/note/:noteId' render={this.showNote} />
+          </NoteContext.Provider>
+          
           <Route path='/folders/:foldersId' render={this.showFolder} />
           <Route exact path='/' render={this.showInitialPage} /> 
         </div>

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 class Folder extends Component {
   
   render() {
+    
     let notes = this.props.notes
       .filter(n => n.folderId === this.props.folder.id)
       .map(n => {
