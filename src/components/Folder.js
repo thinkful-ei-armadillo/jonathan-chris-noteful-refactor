@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import NoteContext from '../NoteContext';
-
+import DeleteButton from './DeleteButton'
 
 class Folder extends Component {
   static contextType = NoteContext;
@@ -19,6 +19,7 @@ class Folder extends Component {
           <li key={n.id}>
             <Link to={`/note/${n.id}`}>{n.name}</Link>
             <p>{n.modified}</p>
+            <DeleteButton />
           </li>);
       });
 

@@ -68,9 +68,8 @@ class App extends Component {
             <Route path='/note/:noteId' component={Note} />
             
             <Route path='/folders/:foldersId' component={Folder} />
-          
+            <Route exact path='/' render={this.showInitialPage} />
           </NoteContext.Provider>
-        <Route exact path='/' render={this.showInitialPage} />
         </div>
       </div>
     );

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
+import DeleteButton from './DeleteButton';
 
 
 
@@ -14,6 +15,7 @@ export default class Main extends React.Component {
         <li key={n.id}>
           <Link to={`/note/${n.id}`}>{n.name}</Link>
           <p>{n.modified}</p>
+          <DeleteButton />
         </li>
 
       );
