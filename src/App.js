@@ -4,7 +4,8 @@ import Main from './components/Main';
 import Note from './components/Note';
 import Sidebar from './components/Sidebar';
 import NoteContext from './NoteContext';
-import store from './store'
+import store from './store';
+import FolderContext from './FolderContext';
 import { Route, Link } from 'react-router-dom';
 import './App.css';
 
@@ -19,11 +20,11 @@ class App extends Component {
     return <Main props={e} notes={this.state.notes} />;
   }
 
-  showFolder = (e) => {
+  /* showFolder = (e) => {
     let folder = this.state.folders.find(f => f.id === e.match.params.foldersId);
 
     return <Folder folder={folder} notes={this.state.notes} />;
-  }
+  } */
 
   render() {
     return (
@@ -41,11 +42,11 @@ class App extends Component {
             notes: this.state.notes
           }}>  
             <Route path='/note/:noteId' component={Note} />
-          </NoteContext.Provider>
+            
+            <Route path='/folders/:foldersId' component={Folder} />
           
-          <Route path='/folders/:foldersId' render={this.showFolder} />
-          {/* Main View */}
-          <Route exact path='/' render={this.showInitialPage} /> 
+          </NoteContext.Provider>
+        <Route exact path='/' render={this.showInitialPage} />
         </div>
       </div>
     );

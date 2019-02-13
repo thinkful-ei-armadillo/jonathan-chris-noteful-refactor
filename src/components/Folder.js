@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import NoteContext from '../NoteContext';
+
 
 class Folder extends Component {
-  
+  static contextType = NoteContext;
+
   render() {
+    let { notes } = this.context;
+    const folderId = this.props.match.params.foldersId
+
+    console.log(this.props, folderId, notes)
     
-    let notes = this.props.notes
-      .filter(n => n.folderId === this.props.folder.id)
+
+    notes = notes.filter(n => n.folderId === folderId)
       .map(n => {
         return (
           <li key={n.id}>
