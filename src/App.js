@@ -64,6 +64,7 @@ class App extends Component {
 
           <NoteContext.Provider value={{
             notes: this.state.notes
+            deletenote: 
           }}>  
             <Route path='/note/:noteId' component={Note} />
             
