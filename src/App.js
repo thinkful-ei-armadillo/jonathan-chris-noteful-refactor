@@ -5,7 +5,6 @@ import Note from './components/Note';
 import Sidebar from './components/Sidebar';
 import NoteContext from './NoteContext';
 import store from './store';
-import FolderContext from './FolderContext';
 import { Route, Link } from 'react-router-dom';
 import './App.css';
 
@@ -13,18 +12,43 @@ import './App.css';
 class App extends Component {
   state = {
     notes: store.notes,
-    folders: store.folders,
+    folders: store.folders
   }
 
   showInitialPage = (e) => {
     return <Main props={e} notes={this.state.notes} />;
   }
 
-  /* showFolder = (e) => {
-    let folder = this.state.folders.find(f => f.id === e.match.params.foldersId);
+  componentDidMount() {
 
-    return <Folder folder={folder} notes={this.state.notes} />;
-  } */
+    fetch('http://localhost:9090/folders')
+      .then(res => {
+        if(!res.ok) {
+          throw new Error('Something went wrong with folders')
+        }
+        return res.json()
+      })
+      .then(foldersData => {
+        console.log(foldersData)
+        this.setState({
+          folders: foldersData
+        })
+        console.log(this.state.folders)
+      })
+      
+      fetch('http://localhost:9090/notes')
+        .then(res => {
+          if(!res.ok) {
+            throw new Error('Something went wrong with notes')
+          }
+          return res.json()
+        })
+        .then(noteData => {
+          this.setState({
+            notes: noteData
+          })
+        })
+  }
 
   render() {
     return (

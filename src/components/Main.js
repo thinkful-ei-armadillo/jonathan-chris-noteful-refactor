@@ -3,13 +3,14 @@ import {Link} from 'react-router-dom'
 
 
 
-export default function Main(props) {
-    console.log('MAIN PROPS: ', props);
+export default class Main extends React.Component {
+  render() {
+    console.log('MAIN PROPS: ', this.props);
 
-    let notes = props.notes.map(n => {
+    let notes = this.props.notes.map(n => {
 
       return (
-        
+
         <li key={n.id}>
           <Link to={`/note/${n.id}`}>{n.name}</Link>
           <p>{n.modified}</p>
@@ -25,4 +26,7 @@ export default function Main(props) {
       </div>
     );
   }
+    
+  }
 
+  
