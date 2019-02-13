@@ -4,6 +4,7 @@ import Main from './components/Main';
 import Note from './components/Note';
 import Sidebar from './components/Sidebar';
 import NoteContext from './NoteContext';
+import DeleteButton from './components/DeleteButton';
 import store from './store';
 import { Route, Link } from 'react-router-dom';
 import './App.css';
@@ -50,6 +51,18 @@ class App extends Component {
         })
   }
 
+  deleteNote = (e, noteId) => {
+    console.log(noteId)
+
+    fetch(`http://localhost:9090/notes/:${noteId}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
+
+  }
+
   render() {
     return (
       <div className="App">
@@ -63,8 +76,8 @@ class App extends Component {
           <Sidebar state={this.state} setFolder={this.setFolder} />
 
           <NoteContext.Provider value={{
-            notes: this.state.notes
-            deletenote: 
+            notes: this.state.notes,
+            deleteNote: this.deleteNote
           }}>  
             <Route path='/note/:noteId' component={Note} />
             

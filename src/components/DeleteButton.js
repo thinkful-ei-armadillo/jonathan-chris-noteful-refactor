@@ -1,19 +1,22 @@
 import React from 'react'
+import NoteContext from '../NoteContext';
 
-function DeleteButton(props){
-    fetch('http://localhost:9090/notes', {
-        method:'DELETE',
-        headers: {
-            'content-type': 'application/json'
-        }
-    })
+class DeleteButton extends React.Component {
+    static contextType = NoteContext;
+    
+    render() {
+        console.log(this.props)
+        const { deleteNote } = this.context;
+        console.log(deleteNote)
+        const noteId = this.props;
+        this.setState({})
 
-    // DELETE request to the server
-    // remove from state
-    // redirect to main route 
-    return(
-        <button>Delete</button>
-    )
+        
+        return (
+            <button onClick={() => deleteNote()}>Delete</button>
+        )
+    }
+    
 }
 
 export default DeleteButton

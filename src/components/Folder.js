@@ -19,7 +19,7 @@ class Folder extends Component {
           <li key={n.id}>
             <Link to={`/note/${n.id}`}>{n.name}</Link>
             <p>{n.modified}</p>
-            <DeleteButton />
+            <DeleteButton noteId={n.id}/>
           </li>);
       });
 

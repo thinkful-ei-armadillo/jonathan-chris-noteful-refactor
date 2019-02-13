@@ -15,7 +15,7 @@ export default class Main extends React.Component {
         <li key={n.id}>
           <Link to={`/note/${n.id}`}>{n.name}</Link>
           <p>{n.modified}</p>
-          <DeleteButton />
+          <DeleteButton noteId={n.id}/>
         </li>
 
       );

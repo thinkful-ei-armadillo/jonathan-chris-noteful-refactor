@@ -2,7 +2,7 @@ import React from 'react';
 
 const NoteContext = React.createContext({
   notes: [],
-  deletenote: () => {}
+  deleteNote: () => {}
 })
 
 export default NoteContext;
