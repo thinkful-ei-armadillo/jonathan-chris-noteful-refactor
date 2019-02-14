@@ -5,18 +5,14 @@ class DeleteButton extends React.Component {
     static contextType = NoteContext;
     
     render() {
+    const { deleteNote } = this.context;
         console.log(this.props)
-        const { deleteNote } = this.context;
-        console.log(deleteNote)
-        const noteId = this.props;
-        this.setState({})
-
-        
         return (
-            <button onClick={() => deleteNote()}>Delete</button>
+            <button onClick={() => {
+                deleteNote(this.props)
+            }}>Delete</button>
         )
-    }
-    
+    }  
 }
 
 export default DeleteButton

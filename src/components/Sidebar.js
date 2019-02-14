@@ -5,9 +5,11 @@ import {NavLink} from 'react-router-dom';
 
 
 class Sidebar extends Component {
-
     render() {
+      
       return (
+        !this.props.error ?
+
         <div className='sidebar'>
           <ul>
             {this.props.state.folders.map(folder =>
@@ -19,6 +21,10 @@ class Sidebar extends Component {
             )}
           </ul>
         </div>
+
+        :
+        
+        <div>{this.props.error}</div>
           
       )
     }

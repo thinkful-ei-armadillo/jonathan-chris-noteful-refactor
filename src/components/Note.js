@@ -16,7 +16,7 @@ export default class Note extends React.Component {
         <h3>{note.name}</h3>
         <p>{note.modified}</p>
         <p>{note.content}</p>
-        <DeleteButton />
+        <DeleteButton noteId={noteId}/>
       </div>
     )
   }

@@ -4,20 +4,21 @@ import Main from './components/Main';
 import Note from './components/Note';
 import Sidebar from './components/Sidebar';
 import NoteContext from './NoteContext';
-import DeleteButton from './components/DeleteButton';
 import store from './store';
-import { Route, Link } from 'react-router-dom';
+import { Route, Link, Redirect } from 'react-router-dom';
 import './App.css';
 
 
 class App extends Component {
   state = {
-    notes: store.notes,
-    folders: store.folders
+    notes: [],
+    folders: [],
+    delRedirect: false
   }
 
   showInitialPage = (e) => {
-    return <Main props={e} notes={this.state.notes} />;
+    
+    return <Main props={e} notes={this.state.notes} />
   }
 
   componentDidMount() {
@@ -34,8 +35,8 @@ class App extends Component {
         this.setState({
           folders: foldersData
         })
-        console.log(this.state.folders)
       })
+      .catch(err => <Sidebar error={err} />)
       
       fetch('http://localhost:9090/notes')
         .then(res => {
@@ -49,19 +50,47 @@ class App extends Component {
             notes: noteData
           })
         })
+        .catch(err => <Main error={err} />)
   }
 
-  deleteNote = (e, noteId) => {
+  deleteNote = (noteId) => {
     console.log(noteId)
+    const id = Object.values(noteId)
+    console.log(id[0])
+    const newNotes = this.state.notes.filter(n => n.id !== id[0])
+    this.setState({
+      notes: newNotes
+    })
+    this.setState({
+      delRedirect: !this.state.delRedirect
+    })
+    console.log(this.state.delRedirect)
 
-    fetch(`http://localhost:9090/notes/:${noteId}`, {
+    fetch(`http://localhost:9090/notes/${id[0]}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
       }
     })
-
+    .then(res => {
+      if(!res.ok) {
+        throw new Error('something went wrong with delete')
+      }
+      return res.json()
+    })
+    .then(res => {
+      const newNotes = this.state.notes.filter(n => n.id !== id[0])
+      this.setState({
+        notes: newNotes
+      })
+      this.setState({
+        delRedirect: !this.state.delRedirect
+      })
+      return res.json();
+    }) 
   }
+
+  
 
   render() {
     return (
@@ -78,11 +107,14 @@ class App extends Component {
           <NoteContext.Provider value={{
             notes: this.state.notes,
             deleteNote: this.deleteNote
+
           }}>  
-            <Route path='/note/:noteId' component={Note} />
             
+            <Route path='/note/:noteId' component={Note} />
             <Route path='/folders/:foldersId' component={Folder} />
             <Route exact path='/' render={this.showInitialPage} />
+  
+            
           </NoteContext.Provider>
         </div>
       </div>
